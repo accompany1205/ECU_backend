@@ -9,6 +9,7 @@ import mongoose from "mongoose"
 import passport from "passport"
 
 import indexRouter from "./routes/index.js"
+import adminRouter from "./routes/admin.js"
 import passportConfig from "./config/passport.js"
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -35,7 +36,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "../public")))
 app.use(passport.initialize())
 app.use("/api", indexRouter)
-app.use("/admin", indexRouter)
+app.use("/admin", adminRouter)
 
 // Passport config
 passportConfig(passport);
