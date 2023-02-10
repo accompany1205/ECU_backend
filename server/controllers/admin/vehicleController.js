@@ -7,9 +7,9 @@ const autoSave = async (req, res) => {
   
 };
 
-const userController = {
+const vehicleController = {
   autoSave,
 
 };
 
-export default userController;
+export default vehicleController;

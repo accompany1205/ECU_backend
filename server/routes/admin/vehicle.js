@@ -1,9 +1,9 @@
 import express from 'express';
 import passport from 'passport';
 
-import vehicleController from '../controllers/admin/vehicleController.js';
+import vehicleController from '../../controllers/admin/vehicleController.js';
 var router = express.Router();
 
-router.get("/", passport.authenticate('jwt', {session: false}), vehicleController.autoSave);
+router.get("/", vehicleController.autoSave);
 
 export default router;
