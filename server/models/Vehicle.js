@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 
 const VehicleSchema = new mongoose.Schema({
   vehicleType: String,
@@ -32,4 +32,4 @@ const VehicleSchema = new mongoose.Schema({
   pWG3Protocol: Number,
 })
 
-module.exports = Vehicle =  mongoose.model('Vehicle', VehicleSchema, 'Vehicles')
+export default mongoose.model('Vehicle', VehicleSchema)
