@@ -1,0 +1,35 @@
+const mongoose = require('mongoose')
+
+const VehicleSchema = new mongoose.Schema({
+  vehicleType: String,
+  brand: String,
+  model: String,
+  modelGeneration: String,
+  modelCode: String,
+  modelType: String,
+  modelYear: Number,
+  version: String,
+  engineManufacturer: String,
+  engineModel: String,
+  engineCode: String,
+  fuel: String,
+  emissionStandardEuro: String,
+  emissionStandardTier: String,
+  cm3: Number,
+  kW: Number,
+  ps: Number,
+  hp: Number,
+  nm: Number,
+  eCUType: String,
+  ecuBrand: String,
+  ecuMicroprocessor: String,
+  ecuVersion: String,
+  kESSv2YesNo: String,
+  kESSv2Protocol: Number,
+  ktagYesNo: String,
+  kTAGGroup: String,
+  kTAGProtocol: Number,
+  pWG3Protocol: Number,
+})
+
+module.exports = Vehicle =  mongoose.model('Vehicle', VehicleSchema, 'Vehicles')
