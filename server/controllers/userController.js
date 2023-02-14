@@ -43,7 +43,7 @@ const create = async (req, res) => {
 };
 
 const findAll = (req, res) => {
-  User.find()
+  User.find({role: { $ne: 'Admin' }})
     .then((users) => {
       res.send(users);
     })
@@ -154,6 +154,28 @@ const deleteOne = (req, res) => {
       });
     });
 };
+
+const deleteUsers = (req, res) => {
+  User.remove({_id: { $in: req.body.ids }})
+    .then((user) => {
+      if (!user) {
+        return res.status(404).json({
+          message: "user not found with id " + req.params.id,
+        });
+      }
+      res.json({ message: "user deleted successfully!" });
+    })
+    .catch((err) => {
+      if (err.kind === "ObjectId" || err.name === "NotFound") {
+        return res.status(404).json({
+          message: "user not found with id " + req.params.id,
+        });
+      }
+      return res.status(500).json({
+        message: "Could not delete user with id " + req.params.id,
+      });
+    });
+}
 
 function uploadAvatar(req, res, next) {
   const userId = req.body.userId;
@@ -302,6 +324,7 @@ const userController = {
   findOne,
   update,
   deleteOne,
+  deleteUsers,
   uploadAvatar,
   removeUserAvatar,
   getUserAvatar,
