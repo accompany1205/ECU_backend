@@ -2,30 +2,29 @@ import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
-const fileSchema = new Schema({
+const newsSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  senderId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
   createdAt: {
     type: Date,
     required: true
   },
-  dueAt:{
-    type: Date,
-    required: true
-  },
-  fileUrl:{
+  imageUrl : {
     type: String,
     required: true
+  },
+  title : {
+    type: String,
+    required: true,
+  },
+  content : {
+    type : String,
+    required: true,
   },
   status: {
     type: String,
     required: true,
-    default: 'request'
+    default: 'active'
   }
 });
 
-export default mongoose.model("File", fileSchema);
+export default mongoose.model("news", newsSchema);
