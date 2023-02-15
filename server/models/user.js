@@ -95,6 +95,10 @@ const userSchema = new Schema({
     type: String,
     required: false,
   },
+  company:{
+    type: String,
+    required: false,
+  },
   role:{
     type: String,
     required: true,
