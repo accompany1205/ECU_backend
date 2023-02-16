@@ -42,22 +42,22 @@ const saveVehicle = async (data) => {
   await vehicle.save()
 }
 const autoSave = async (req, res) => {
-  const workbook = XLSX.readFile('source.xlsx')
+  const workbook = XLSX.readFile("./source.xlsx")
   const sheet_name_list = workbook.SheetNames
   const xlData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
   await Promise.all(
     xlData.map(async (data) => {
-      if(!(brands.filter((brand) => brand === data.Brand)).length && !(o_brands.filter((brand) => brand === data.Brand)).length) {
-        brands.push(data.Brand)
-      }
-      await sleep(10000)
+      // if(!(brands.filter((brand) => brand === data.Brand)).length && !(o_brands.filter((brand) => brand === data.Brand)).length) {
+      //   brands.push(data.Brand)
+      // }
+      // await sleep(10000)
       await saveVehicle(data)
     })
   )
 };
 
 const getDate = async (req, res) => {
-  const { page, limit, searchText } = req.body;
+  const { page, limit, search } = req.body;
   try {
     // execute query with page and limit values
     const vehicles = await Vehicle.find({
@@ -111,7 +111,7 @@ const getDate = async (req, res) => {
           }
         },
         {
-          "eCUType": {
+          "ecuType": {
               "$regex": search,
               '$options': 'i'
           }
@@ -136,11 +136,11 @@ const getDate = async (req, res) => {
       .exec();
 
     // get total documents in the Posts collection 
-    const count = await vehicles.count({});
+    const count = await Vehicle.count({});
 
     // return response with posts, total pages, and current page
     res.json({
-      posts,
+      vehicles,
       totalPages: Math.ceil(count / limit),
       currentPage: page,
       count: count
