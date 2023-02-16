@@ -6,7 +6,8 @@ const newsSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   createdAt: {
     type: Date,
-    required: true
+    required: true,
+    default: Date.now()
   },
   imageUrl : {
     type: String,
@@ -21,9 +22,8 @@ const newsSchema = new Schema({
     required: true,
   },
   status: {
-    type: String,
-    required: true,
-    default: 'active'
+    type: Boolean,
+    default: false
   }
 });
 

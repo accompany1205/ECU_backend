@@ -136,7 +136,7 @@ const getDate = async (req, res) => {
       .exec();
 
     // get total documents in the Posts collection 
-    const count = await vehicles.count();
+    const count = await vehicles.count({});
 
     // return response with posts, total pages, and current page
     res.json({
