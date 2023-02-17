@@ -136,7 +136,79 @@ const getData = async (req, res) => {
       .exec();
 
     // get total documents in the Posts collection 
-    const count = await Vehicle.count({});
+    const count = await Vehicle.count({
+      $or: [
+        {
+          "vehicleType": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        {
+          "brand": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        {
+          "model": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        {
+          "modelType": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        {
+          "modelYear": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        {
+          "version": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        {
+          "ps": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        {
+          "hp": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        {
+          "ecuType": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        {
+          "ecuBrand": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        {
+          "ecuVersion": {
+              "$regex": search,
+              '$options': 'i'
+          }
+        },
+        
+      ]
+    });
+
+    console.log(vehicles);
 
     // return response with posts, total pages, and current page
     res.json({
