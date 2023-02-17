@@ -153,13 +153,14 @@ const getDate = async (req, res) => {
 const getBrand = async (req, res) => {
   try {
     let brands = await Vehicle.find().select('brand');
-    console.log(Vehicle.count({}));
     brands = brands.map((brand)=> brand.brand);
+    console.log(brands);
     const data=[];
     brands.forEach((brand)=> {
       if(data.indexOf(brand) >= 0)
         data.push(brand);
     })
+    console.log(brands);
     if(data.length > 0)
       res.json(data);
     else
