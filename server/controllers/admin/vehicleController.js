@@ -132,7 +132,7 @@ const getDate = async (req, res) => {
       ]
       })
       .limit(limit * 1)
-      .skip((page - 1) * limit)
+      .skip((page) * limit)
       .exec();
 
     // get total documents in the Posts collection 
