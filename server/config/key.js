@@ -10,7 +10,7 @@ try {
 const localhost = '127.0.0.1'
 const keys = {
   // mongoURI: "mongodb://URL:27017/myproject"
-  mongoURI: `${process.env.DB_CONNECT || localhost}`,
+  mongoURI: `${process.env.DB_CONNECT || '192.168.125.148'}`,
   siteURL: `${process.env.SITE_URL || localhost}`,
   secretOrKey: `${process.env.SECRETORKEY || secretOrKey}`,
   port: process.env.PORT,
