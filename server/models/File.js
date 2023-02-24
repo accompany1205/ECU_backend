@@ -18,8 +18,7 @@ const fileSchema = new Schema({
     required: true
   },
   fileUrl:{
-    type: String,
-    required: true
+    type: [String]
   },
   status: {
     type: String,
